@@ -72,7 +72,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### FIFO Queue
 ```hcl
   module "sqs" {
-    source                      = "clouddrove/sqs/aws"
+    source                      = "astechmind/sqs/aws"
     version                     = "0.14.0"
     name                        = "sqs-fifo"
     environment                 = "test"
@@ -84,7 +84,7 @@ Here are some examples of how you can use this module in your inventory structur
 ### Standard Queue
 ```hcl
   module "sqs" {
-    source                    = "clouddrove/sqs/aws"
+    source                    = "astechmind/sqs/aws"
     version                   = "0.14.0"
     name                      = "sqs"
     environment               = "test"
@@ -106,14 +106,10 @@ Here are some examples of how you can use this module in your inventory structur
         identifiers = ["*"]
       }
       actions   = ["sqs:SendMessage"]
-      resources = ["arn:aws:sqs:eu-west-1:xxxxxxxxx:test-clouddrove-sqs"]
+      resources = ["arn:aws:sqs:eu-west-1:xxxxxxxxx:test-astechmind-sqs"]
     }
   }
 ```
-
-
-
-
 
 
 ## Inputs
@@ -130,14 +126,14 @@ Here are some examples of how you can use this module in your inventory structur
 | kms\_data\_key\_reuse\_period\_seconds | The length of time, in seconds, for which Amazon SQS can reuse a data key to encrypt or decrypt messages before calling AWS KMS again. An integer representing seconds, between 60 seconds (1 minute) and 86,400 seconds (24 hours). | `number` | `300` | no |
 | kms\_master\_key\_id | The ID of an AWS-managed customer master key (CMK) for Amazon SQS or a custom CMK. | `string` | `""` | no |
 | label\_order | Label order, e.g. `name`,`application`. | `list(any)` | `[]` | no |
-| managedby | ManagedBy, eg 'CloudDrove'. | `string` | `"hello@clouddrove.com"` | no |
+| managedby | ManagedBy, eg 'astechmind'. | `string` | `"hello@astechmind.com"` | no |
 | max\_message\_size | The limit of how many bytes a message can contain before Amazon SQS rejects it. An integer from 1024 bytes (1 KiB) up to 262144 bytes (256 KiB). | `number` | `262144` | no |
 | message\_retention\_seconds | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days). | `number` | `345600` | no |
 | name | Name  (e.g. `app` or `cluster`). | `string` | `""` | no |
 | policy | The JSON policy for the SQS queue. | `string` | `""` | no |
 | receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds). | `number` | `0` | no |
 | redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5"). | `string` | `""` | no |
-| repository | Terraform current module repo | `string` | `"https://registry.terraform.io/modules/clouddrove/sqs/aws"` | no |
+| repository | Terraform current module repo | `string` | `"https://registry.terraform.io/modules/astechmind/sqs/aws"` | no |
 | tags | Additional tags (e.g. map(`BusinessUnit`,`XYZ`). | `map(any)` | `{}` | no |
 | visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours). | `number` | `30` | no |
 
@@ -150,8 +146,6 @@ Here are some examples of how you can use this module in your inventory structur
 | tags | A mapping of tags to assign to the resource. |
 
 
-
-
 ## Testing
 In this module testing is performed with [terratest](https://github.com/gruntwork-io/terratest) and it creates a small piece of infrastructure, matches the output like ARN, ID and Tags name etc and destroy infrastructure in your AWS account. This testing is written in GO, so you need a [GO environment](https://golang.org/doc/install) in your system. 
 
@@ -160,24 +154,14 @@ You need to run the following command in the testing folder:
   go test -run Test
 ```
 
-
-
-## Feedback 
-If you come accross a bug or have any feedback, please log it in our [issue tracker](https://github.com/clouddrove/terraform-aws-sqs/issues), or feel free to drop us an email at [hello@clouddrove.com](mailto:hello@clouddrove.com).
-
-If you have found it worth your time, go ahead and give us a ★ on [our GitHub](https://github.com/clouddrove/terraform-aws-sqs)!
-
 ## About us
 
-At [CloudDrove][website], we offer expert guidance, implementation support and services to help organisations accelerate their journey to the cloud. Our services include docker and container orchestration, cloud migration and adoption, infrastructure automation, application modernisation and remediation, and performance engineering.
+At [astechmind][website], we offer expert guidance, implementation support and services to help organisations accelerate their journey to the cloud. Our services include docker and container orchestration, cloud migration and adoption, infrastructure automation, application modernisation and remediation, and performance engineering.
 
 <p align="center">We are <b> The Cloud Experts!</b></p>
 <hr />
-<p align="center">We ❤️  <a href="https://github.com/clouddrove">Open Source</a> and you can check out <a href="https://github.com/clouddrove">our other modules</a> to get help with your new Cloud ideas.</p>
+<p align="center">We ❤️  <a href="https://github.com/astechmind">Open Source</a> and you can check out <a href="https://github.com/astechmind">our other modules</a> to get help with your new Cloud ideas.</p>
 
-  [website]: https://clouddrove.com
-  [github]: https://github.com/clouddrove
-  [linkedin]: https://cpco.io/linkedin
-  [twitter]: https://twitter.com/clouddrove/
-  [email]: https://clouddrove.com/contact-us.html
-  [terraform_modules]: https://github.com/clouddrove?utf8=%E2%9C%93&q=terraform-&type=&language=
+  [website]: https://astechmind.com
+  [github]: https://github.com/astechmind
+  [terraform_modules]: https://github.com/astechmind?utf8=%E2%9C%93&q=terraform-&type=&language=
